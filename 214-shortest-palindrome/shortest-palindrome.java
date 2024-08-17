@@ -1,27 +1,25 @@
 class Solution {
-    
-    public Boolean isPalindrome(String s){
-        for(int i=0;i<(s.length());i++){
-            if(s.charAt(i)!=s.charAt(s.length()-i-1)) 
-            return false;
+           
+      public boolean isPalindrome(String str) {
+    int len = str.length();
+    for (int i = 0; i < len / 2; i++) {
+        if (str.charAt(i) != str.charAt(len - i - 1)) {
+            return false; 
         }
-        return true;
     }
-    
+    return true;
+      }
+
     public String shortestPalindrome(String s) {
-        if(isPalindrome(s)) {
-            return s;
+        int n=s.length();
+        for(int i=n;i>0;i--){
+             if(isPalindrome(s.substring(0,i))){
+            StringBuilder sb=new StringBuilder(s.substring(i));
+            String rev=sb.reverse().toString();
+            return rev+s;
+             }
         }
-        int right=s.length()-1;
-        while(right>0){
-            if(isPalindrome(s.substring(0,right)))
-             break;
-            right--;
-        }
-        System.out.print(right);
-        StringBuilder input1 = new StringBuilder();
-        input1.append(s.substring(right));
-        input1.reverse();
-        return input1+s;
+        return "";
     }
-}
+    }
+    
