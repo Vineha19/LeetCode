@@ -1,33 +1,27 @@
 class Solution {
-    public String shortestPalindrome(String s) {
-        int i=s.length();
-        while(i!=1){
-            if(isPalindrome(s.substring(0,i))){
-                return reverseString(s.substring(i,s.length()))+s;
-            }
-            i--;
-        }
-        return reverseString(s.substring(1,s.length()))+s;
-
-    }
-
-    public String reverseString(String str) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = str.length() - 1; i >= 0; i--) {
-          sb.append(str.charAt(i));
-        }
-        return sb.toString();
-    }
-
-    public boolean isPalindrome(String str) {
-        int len = str.length();
-        for (int i = 0; i < len / 2; i++) {
-            char frontChar = str.charAt(i);
-            char backChar = str.charAt(len - i - 1);    
-            if (frontChar != backChar) {
-                return false;
-            }
+    
+    public Boolean isPalindrome(String s){
+        for(int i=0;i<(s.length()/2);i++){
+            if(s.charAt(i)!=s.charAt(s.length()-i-1)) 
+            return false;
         }
         return true;
+    }
+    
+    public String shortestPalindrome(String s) {
+        if(isPalindrome(s)) {
+            return s;
+        }
+        int right=s.length()-1;
+        while(right>0){
+            if(isPalindrome(s.substring(0,right)))
+             break;
+            right--;
+        }
+        System.out.print(right);
+        StringBuilder input1 = new StringBuilder();
+        input1.append(s.substring(right));
+        input1.reverse();
+        return input1+s;
     }
 }
