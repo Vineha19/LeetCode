@@ -12,7 +12,7 @@ class Solution {
                     String temp = str[j];
                     str[j] = str[j + 1];
                     str[j + 1] = temp;
-                }
+                } 
             }
         }
         if(str[0].equals("0")){
