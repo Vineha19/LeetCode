@@ -4,14 +4,17 @@ class Solution {
         for(int i=0;i<str.length;i++){
         str[i]=nums[i]+"";
         }
-        Arrays.sort(str,new Comparator<String>(){
-        @Override
-        public int compare(String a,String b){
-        String s1=a+b;
-        String s2=b+a;
-        return s2.compareTo(s1);
+        for (int i = 0; i < str.length - 1; i++) {
+            for (int j = 0; j < str.length - i - 1; j++) {
+                String s1 = str[j] + str[j + 1];
+                String s2 = str[j + 1] + str[j];
+                if (s1.compareTo(s2) < 0) {
+                    String temp = str[j];
+                    str[j] = str[j + 1];
+                    str[j + 1] = temp;
+                }
+            }
         }
-    });
         if(str[0].equals("0")){
             return "0";
         }
